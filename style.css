@@ -1,301 +1,206 @@
-/* LEAN Menu Theme Variables */
 :root {
-    --menu-bg-color: #1a1a1a; /* Dark background for the menu */
-    --header-bg-color: #000000; /* Black for header background */
-    --tab-list-bg-color: #0d0d0d; /* Slightly lighter black for tab list */
-    --active-tab-bg-color: #70c5707a; /* Bright green for active tab */
-    --active-tab-text-color: #ffffff; /* Black text for active tab */
-    --tab-text-color: #ffffff; /* White text for inactive tabs */
-    --tab-hover-bg-color: #222222; /* Dark grey for tab hover */
-    --text-color: #ffffff;
-    --footer-bg-color: #0d0d0d;
-    --footer-text-color: #aaaaaa;
-    --border-color: #2c2c2c;
-    --arrow-color: #696868;
-    --font-family: 'Arial', sans-serif; /* Example font, user can change */
-    --transition-speed: 0.2s;
+    --menu-bg-color: #3f3a36;
+    --header-bg-color: #3f3a36;
+    --tab-list-bg-color: #49423e;
+    --active-tab-bg-color: #5f564e;
+    --active-tab-text-color: #fff;
+    --tab-text-color: #e7dfd6;
+    --tab-hover-bg-color: #57504b;
+    --tab-border-color: #6b6057;
+    --menu-shadow: 0 5px 20px #201f1c, 0 2px 16px #000a;
+    --font-family: 'Arial', sans-serif;
+    --transition-speed: 0.18s;
 }
-
-/* Reset and Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: var(--font-family);
-}
-
-body {
-    background-color: transparent; /* For FiveM DUI */
-    color: var(--text-color);
-    font-size: 14px;
-    line-height: 1.4;
-    overflow: hidden; /* Prevent scrollbars on body */
-}
-
-/* Main Container */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-family);}
+body { background-color: #272522; color: var(--text-color); font-size: 14px; line-height: 1.4; overflow: hidden; }
 .mod-menu-container {
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 370px;
+    height: 494px;
     transform: translate(-50%, -50%);
-    width: 350px; /* Width similar to image */
-    height: auto; /* Height adjusts to content */
-    max-height: 90vh; /* Max height to prevent overflow */
     background-color: var(--menu-bg-color);
-    border-radius: 5px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    box-shadow: var(--menu-shadow);
+    border: 2px solid var(--tab-border-color);
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Important for rounded corners */
+    overflow: hidden;
 }
-
-/* Header */
 .mod-menu-header {
     background-color: var(--header-bg-color);
-    position: relative; /* For absolute positioning of title */
-    height: 100px; /* Adjust as needed for banner */
+    position: relative;
+    height: 130px;
+    overflow: hidden;
+    border-bottom: 2px solid var(--tab-border-color);
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end; /* Align HOME to bottom */
-    align-items: center;
-    padding-bottom: 5px;
+    align-items: flex-start;
+    justify-content: center;
 }
-
 .header-banner {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Cover the area, might crop */
-    z-index: 1;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: fill; object-position: center center;
+    background: #26221d; z-index: 1; opacity: 1; filter: none;
+    pointer-events: none; user-select: none;
 }
-
 .header-title-bar {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    text-align: center;
-    color: #fff; /* White text for LEAN MENU */
+    top: 25%; left: 50%; transform: translate(-50%, -50%);
+    z-index: 2; width: 100%; text-align: center;
+    background: rgba(63,58,54,0.55);
+    padding: 7px 0 2px 0; border-radius: 8px;
+    box-shadow: 0 2px 10px #0005;
 }
-
 .header-title {
-    font-size: 36px; /* Large font for LEAN */
-    font-weight: bold;
+    font-size: 34px; color: #fff; letter-spacing: 0.13em;
+    font-weight: bold; text-shadow: 0 2px 12px #201f1c, 0 0 7px #e2d6c1;
     display: block;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
 }
-
 .header-subtitle {
-    font-size: 14px; /* Smaller font for MENU */
-    font-weight: normal;
-    display: block;
-    letter-spacing: 2px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    font-size: 13px; color: #e2d6c1; letter-spacing: 0.29em;
+    text-shadow: 0 1px 2px #201f1c, 0 0 5px #e2d6c1; display: block; margin-top: -1px;
 }
-
 .header-current-tab {
-    font-size: 12px;
-    font-weight: bold;
-    color: var(--text-color);
-    background-color: rgba(0,0,0,0.5); /* Semi-transparent black bg */
-    padding: 3px 8px;
-    border-radius: 3px;
-    z-index: 2;
-    text-transform: uppercase;
+    font-size: 13px; font-weight: bold; color: #fff;
+    background: rgba(63,58,54,0.85); padding: 2px 13px; border-radius: 4px;
+    z-index: 2; text-transform: uppercase; letter-spacing: 0.22em;
+    position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%);
+    text-shadow: 0 2px 6px #201f1c, 0 0 6px #e2d6c1a0;
 }
-
-/* Menu Body (Tabs + Content) */
-.mod-menu-body {
-    display: flex;
-    flex-direction: column; /* Tabs above content */
-    background-color: var(--tab-list-bg-color);
-}
-
-/* Tabs List */
+.mod-menu-body { display: flex; flex-direction: column; background-color: var(--tab-list-bg-color); position: relative; flex: 1; }
 .mod-menu-tabs {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    max-height: calc(90vh - 100px - 30px); /* Adjust based on header/footer */
-    overflow-y: auto; /* Scroll if many tabs */
-    scrollbar-width: thin;
-    scrollbar-color: var(--active-tab-bg-color) var(--tab-list-bg-color); /* Thumb and track color */
+    list-style: none; padding: 0; margin: 0;
+    background: var(--tab-list-bg-color);
+    border-radius: 0 0 10px 10px;
+    overflow-y: auto; max-height: 300px;
 }
-
-/* Custom Scrollbar for Webkit browsers (Chrome, Safari) */
-.mod-menu-tabs::-webkit-scrollbar {
-    width: 6px; /* Width of the scrollbar */
-}
-
-.mod-menu-tabs::-webkit-scrollbar-track {
-    background: var(--tab-list-bg-color); /* Background of the scrollbar track */
-    border-radius: 3px;
-}
-
-.mod-menu-tabs::-webkit-scrollbar-thumb {
-    background-color: var(--active-tab-bg-color); /* Color of the scrollbar thumb */
-    border-radius: 3px; /* Roundness of the scrollbar thumb */
-}
-
-.mod-menu-tabs::-webkit-scrollbar-thumb:hover {
-    background-color: #00cc00; /* Slightly lighter green on hover */
-}
-
+.mod-menu-tabs li { margin: 0; }
 .tab-btn {
-    display: flex;
-    align-items: center;
-    padding: 10px 15px;
-    color: var(--tab-text-color);
-    cursor: pointer;
-    transition: background-color var(--transition-speed), color var(--transition-speed);
-    border-bottom: 1px solid var(--border-color);
-    font-size: 13px;
+    width: 100%; display: flex; align-items: center; justify-content: flex-start; gap: 14px;
+    background: var(--tab-list-bg-color); color: var(--tab-text-color);
+    padding: 14px 20px; font-size: 17px; font-weight: 500;
+    border: none; border-bottom: 1px solid var(--tab-border-color);
+    cursor: pointer; transition: background var(--transition-speed), color var(--transition-speed);
+    text-align: right; outline: none; border-radius: 0;
 }
-
-.tab-btn:last-child {
-    border-bottom: none;
-}
-
-.tab-btn i {
-    margin-right: 10px;
-    width: 16px; /* Fixed width for icon alignment */
-    text-align: center;
-    color: var(--arrow-color); /* Icon color same as arrow */
-}
-
-.tab-btn .arrow {
-    margin-left: auto;
-    color: var(--arrow-color);
-}
-
-.tab-btn:hover {
-    background-color: var(--tab-hover-bg-color);
-}
-
-.tab-btn.active {
-    background-color: var(--active-tab-bg-color);
-    color: var(--active-tab-text-color);
-    font-weight: bold;
-}
-
-.tab-btn.active i,
-.tab-btn.active .arrow {
-    color: var(--active-tab-text-color);
-}
-
-/* Content Area - Hidden by default, shown by JS */
-.mod-menu-content {
-    display: none; /* Initially hidden, JS will show active tab's content */
-    padding: 15px;
-    background-color: var(--menu-bg-color);
-    /* If content is shown next to tabs, adjust layout here */
-}
-
-.tab-content {
-    display: none;
-}
-
-.tab-content.active {
-    display: block;
-}
-
+.tab-btn:last-child { border-bottom: none; }
+.tab-btn i { font-size: 19px; min-width: 22px; color: var(--tab-text-color); margin-right: 0; }
+.tab-btn .arrow { margin-left: auto; color: var(--tab-text-color); font-size: 15px; }
+.tab-btn:hover, .tab-btn:focus { background: var(--tab-hover-bg-color); color: #fff; }
+.tab-btn.active { background: var(--active-tab-bg-color); color: var(--active-tab-text-color); font-weight: bold; }
+.tab-btn.active i, .tab-btn.active .arrow, .tab-btn:hover i, .tab-btn:hover .arrow { color: #fff; }
+.mod-menu-content { display: none; padding: 15px; background-color: var(--menu-bg-color); flex: 1; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
 .menu-section h2 {
-    font-size: 16px;
-    color: var(--active-tab-bg-color);
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid var(--border-color);
+    font-size: 16px; color: var(--footer-text-color); margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px solid var(--tab-border-color);
 }
-
-/* Footer */
 .mod-menu-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 15px;
-    background-color: var(--footer-bg-color);
-    border-top: 1px solid var(--border-color);
-    font-size: 11px;
-    color: var(--footer-text-color);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 15px; background-color: var(--footer-bg-color);
+    border-top: 1px solid var(--tab-border-color); font-size: 11px; color: var(--footer-text-color);
 }
-
-.version-info {
-    text-align: left;
+.submenu-overlay {
+    position: fixed; top: 50%; left: 50%; width: 370px; height: 494px;
+    background: var(--tab-list-bg-color); border-radius: 10px;
+    box-shadow: var(--menu-shadow); z-index: 9999; display: flex; flex-direction: column;
+    transform: translate(-50%, -50%); animation: submenu-slidein 0.17s; overflow: hidden;
 }
-
-.page-counter {
-    text-align: right;
+@keyframes submenu-slidein {
+    from { opacity: 0; transform: translate(-50%, -40%);}
+    to   { opacity: 1; transform: translate(-50%, -50%);}
 }
-
-/* Example: Styling for options within a tab if content is shown */
-.option-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.option-item:last-child {
-    border-bottom: none;
-}
-
-/* Basic button styling for options */
-.option-button {
-    background-color: var(--active-tab-bg-color);
-    color: var(--active-tab-text-color);
-    border: none;
-    padding: 5px 10px;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.option-button:hover {
-    opacity: 0.8;
-}
-
-/* Toggle Switch (basic example) */
-.toggle-switch {
+/* صورة الهيدر في القوائم الفرعية */
+.submenu-header-banner {
     position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 20px;
+    width: 100%;
+    height: 130px;
+    overflow: hidden;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background: var(--header-bg-color);
+}
+.submenu-header-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    object-position: center center;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+    opacity: 1;
+}
+.submenu-options-list {
+    list-style: none; margin: 0; padding: 0; flex: 1; overflow-y: auto; display: flex; flex-direction: column;
+}
+.submenu-option-btn {
+    width: 100%; display: flex; align-items: center; gap: 16px; justify-content: flex-start;
+    background: var(--tab-list-bg-color); color: var(--tab-text-color);
+    padding: 14px 20px; font-size: 16px; font-weight: 500; border: none;
+    border-bottom: 1px solid var(--tab-border-color); cursor: pointer;
+    transition: background var(--transition-speed), color var(--transition-speed); text-align: right;
+    outline: none; border-radius: 0;
+}
+.submenu-option-btn:last-child { border-bottom: none; }
+.submenu-option-label { flex: 1 1 auto; text-align: right; font-size: 16px; }
+.submenu-option-btn .submenu-icon { font-size: 19px; min-width: 22px; color: var(--tab-text-color); }
+.submenu-option-btn .submenu-arrow { margin-left: auto; color: var(--tab-text-color); font-size: 15px; }
+.submenu-option-btn.active, .submenu-option-btn:focus, .submenu-option-btn:hover {
+    background: var(--active-tab-bg-color); color: #fff;
+}
+.submenu-option-btn.active .submenu-icon,
+.submenu-option-btn:focus .submenu-icon,
+.submenu-option-btn:hover .submenu-icon,
+.submenu-option-btn.active .submenu-arrow,
+.submenu-option-btn:focus .submenu-arrow,
+.submenu-option-btn:hover .submenu-arrow { color: #fff; }
+.submenu-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 15px; background-color: var(--footer-bg-color);
+    border-top: 1px solid var(--tab-border-color); font-size: 11px; color: var(--footer-text-color);
+    border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;
 }
 
-.toggle-switch input { display: none; }
-
-.toggle-slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 20px;
+/* زر التبديل (Toggle Switch) */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 24px;
+  margin-left: 12px;
+  vertical-align: middle;
 }
-
-.toggle-slider:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 2px;
-    bottom: 2px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
-
-input:checked + .toggle-slider {
-    background-color: var(--active-tab-bg-color);
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #888;
+  border-radius: 24px;
+  transition: background 0.2s;
 }
-
-input:checked + .toggle-slider:before {
-    transform: translateX(20px);
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  top: 3px;
+  background-color: #d4d4d4;
+  border-radius: 50%;
+  transition: transform 0.2s, background 0.2s;
+}
+input:checked + .slider {
+  background-color: #1760fa;
+}
+input:checked + .slider:before {
+  background: #36a4fa;
+  transform: translateX(18px);
 }
